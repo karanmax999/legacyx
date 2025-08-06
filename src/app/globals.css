@@ -1,0 +1,209 @@
+/* LegacyX Global Styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables */
+:root {
+  --legacy-primary: #F7931A;
+  --legacy-secondary: #0A2463;
+  --legacy-dark: #050A30;
+  --legacy-light: #F5F7FA;
+  --legacy-gray: #6B7280;
+  --legacy-success: #10B981;
+  --legacy-warning: #F59E0B;
+  --legacy-error: #EF4444;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(247, 147, 26, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(247, 147, 26, 0.8);
+  }
+}
+
+/* Animation Classes */
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Custom Components */
+@layer components {
+  /* Glass Morphism Effect */
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--legacy-primary), var(--legacy-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Button Enhancements */
+  .btn-primary {
+    @apply bg-legacy-gold text-legacy-dark font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:bg-yellow-500 hover:scale-105 hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-legacy-gold text-legacy-gold font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:bg-legacy-gold hover:text-legacy-dark hover:scale-105;
+  }
+
+  /* Card Hover Effects */
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-legacy-gold/50;
+  }
+
+  /* Loading States */
+  .loading-skeleton {
+    @apply animate-pulse bg-legacy-gray/20 rounded;
+  }
+
+  /* Form Enhancements */
+  .input-enhanced {
+    @apply bg-legacy-dark/50 border border-legacy-blue/30 rounded-lg px-4 py-3 text-legacy-light placeholder-legacy-gray focus:border-legacy-gold focus:outline-none transition-all duration-300;
+  }
+
+  .input-enhanced:focus {
+    @apply shadow-lg shadow-legacy-gold/20;
+  }
+
+  /* Web3 Specific Elements */
+  .wallet-connect-btn {
+    @apply bg-gradient-to-r from-legacy-gold to-yellow-500 text-legacy-dark font-bold py-2 px-4 rounded-lg transition-all duration-300 hover:from-yellow-500 hover:to-legacy-gold hover:shadow-lg hover:scale-105;
+  }
+
+  .crypto-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-legacy-blue/20 text-legacy-gold border border-legacy-blue/30;
+  }
+
+  /* Dashboard Enhancements */
+  .dashboard-card {
+    @apply bg-gradient-to-br from-legacy-blue/20 to-legacy-dark/50 p-6 rounded-xl border border-legacy-blue/30 backdrop-blur-sm transition-all duration-300 hover:border-legacy-gold/50 hover:shadow-xl;
+  }
+
+  .vault-overview {
+    @apply relative overflow-hidden bg-gradient-to-br from-legacy-dark via-legacy-blue/20 to-legacy-dark p-6 rounded-xl border border-legacy-blue/30;
+  }
+
+  /* Responsive Utilities */
+  @media (max-width: 768px) {
+    .dashboard-card {
+      @apply p-4;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+      @apply w-full;
+    }
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--legacy-dark);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--legacy-gold);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #e5a000;
+  }
+
+  /* Selection Styling */
+  ::selection {
+    background: var(--legacy-gold);
+    color: var(--legacy-dark);
+  }
+
+  /* Focus States */
+  *:focus {
+    outline: 2px solid var(--legacy-gold);
+    outline-offset: 2px;
+  }
+}
